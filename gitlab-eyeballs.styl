@@ -1,12 +1,12 @@
 /* ==UserStyle==
-@name         Dark-GitLab
-@namespace    gitlab.com/vednoc/dark-gitlab
-@version      0.52.1
-@description  Dark and light theme for GitLab and self-hosted GitLab instances.
-@author       vednoc <vednoc@pm.me> (https://gitlab.com/vednoc)
-@homepageURL  https://gitlab.com/vednoc/dark-gitlab
-@supportURL   https://gitlab.com/vednoc/dark-gitlab/issues
-@updateURL    https://gitlab.com/vednoc/dark-gitlab/raw/master/gitlab.user.styl
+@name         Gitlab-Eyeballs
+@namespace    gitlab.com/vivlock/stylin
+@version      0.1
+@description  Easy on the eyes theme for Gitlab and Gitlab instances
+@author       vivlock, on top of dark-gitlab theme by vednoc
+@homepageURL  https://gitlab.com/vivlock/stylin
+@supportURL   https://gitlab.com/vivlock/stylin
+@updateURL    https://gitlab.com/vivlock/stylin
 @preprocessor stylus
 
 @var select   theme      "Theme colors" ["Default", "GitHub"]
@@ -22,7 +22,7 @@
 @var checkbox p_header   "Center project header elements" 0
 @var checkbox md_center  "Readme: Center and limit content max width" 1
 @var checkbox dark_logo  "Switch to our darker logo" 0
-@var checkbox navbar_c   "Navbar: Theme navbar color" 1
+//@var checkbox navbar_c   "Navbar: Theme navbar color" 1
 @var checkbox navbar_n   "Navbar: Show 'next' badge" 1
 @var checkbox invert_ic  "Icons: Invert in Chromium-based browsers" 1
 @var checkbox enable_sb  "Enable custom scrollbars" 1
@@ -76,7 +76,35 @@
     --bg-pos    : bg_pos;
     --background: bg_image;
 
+    // Blue-Black colors
+    // lifted from YouTrack's dark theme and Rainglow - Peacocks in Space
+    /*
+      background    #23272b
+      block         #2b303b
+      borders       #bbb
+      text          #bbb 
+      links         #70b1e6
+      input borders #70b1e6
+    */
+
     if (theme == 'GitHub') {
+      --background: #23272b;
+      --dark      : #23272b;
+      --darken    : #2b303b;
+      --darker    : #404040;
+      --light     : #bbb;
+      --lighter   : #70b1e6;
+      --accent    : #4f8cc9;
+      --shadow    : #00000040;
+      --yellow    : #ffcc33;
+      --orange    : #fe9600;
+      --red       : #ff4444;
+      --magenta   : #8368aa;
+      --violet    : #6e5494;
+      --blue      : #4f8cc9;
+      --cyan      : #4d5eff;
+      --green     : #008833;
+      /*
       --background: #282828;
       --dark      : #181818;
       --darken    : #202020;
@@ -93,6 +121,7 @@
       --blue      : #4f8cc9;
       --cyan      : #4d5eff;
       --green     : #008833;
+      */
     } else {
       --dark      : dark;
       --darken    : darken;
@@ -760,10 +789,10 @@
 
   // * Navbar.
   .navbar {
-    c: 0 bd;
+    //c: 0 bd;
     box-shadow: bsh !important;
     // ? Feature -> Theme navbar color.
-    if ( navbar_c == 1 ) { c: 0 0 bg }
+    //if ( navbar_c == 1 ) { c: 0 0 bg }
     // ? Feature -> Show 'next' badge.
     if ( navbar_n != 1 ) { .canary-badge { display: none !important }}
     .canary-badge .badge.badge-pill { c: white green green }
@@ -1550,6 +1579,8 @@
   }
 
   .scrolling-tabs-container {
+    // viv --update MR tabs background color
+    background-color: bd;
     .fade-right {
       background: linear-gradient(to left, bg 45%, t);
       border-right: 1px solid bd;
@@ -5102,6 +5133,8 @@
   }
   // * Icons -> Borderless CI status icons.
   .ic-status {
+    // viv trying to fix icon with white bg
+    &_warning { c: 0 orange }
     &_warning_borderless { c: 0 orange }
     &_success_borderless { c: 0 green }
     &_running_borderless { c: 0 blue }
